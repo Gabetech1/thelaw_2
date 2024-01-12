@@ -25,6 +25,9 @@ export class ContactUsComponent {
     this.form = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required]],
+      subject: ['', [Validators.required]],
+      message: ['', [Validators.required]],
       // Add more form controls as needed
     });
   }
@@ -34,21 +37,29 @@ export class ContactUsComponent {
     if (this.form.valid) {
       const formData = this.form.value;
 
-      // this.submitFormData(formData);
+      this.fetchData(formData);
     }
   }
 
-  private submitFormData(formData: any) {
+  fetchData(formData: any) {
     // Replace 'your-api-endpoint' with the actual API endpoint
-    const apiUrl = 'your-api-endpoint';
+    const apiUrl = 'https://clientapi.gabeshub.com/lawyer/sendmail.php';
 
-    /*  this.http.post(apiUrl, formData).subscribe(
+    this.http.post(apiUrl, formData).subscribe(
       (response) => {
         console.log('Form submitted successfully:', response);
+        this.form.reset();
+        alert('Message sent successfully');
       },
       (error) => {
         console.error('Error submitting form:', error);
+        if (error.error.text == 'Message sent') {
+          this.form.reset();
+          alert('Message sent successfully');
+        } else {
+          alert('Message sending failed');
+        }
       }
-    ); */
+    );
   }
 }
