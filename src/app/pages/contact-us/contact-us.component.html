@@ -70,7 +70,7 @@
 						Send Us Message
 					</h2>
 					<p class="subheading mb-4">"we always take care of clients seriously"</p>
-					<form class="form-contact" id="contactForm">
+					<form class="form-contact" id="contactForm" [formGroup]="form" (ngSubmit)="onSubmit()">
 						<div class="row">
 							<div class="col-sm-6 col-md-6">
 								<div class="form-group">
