@@ -57,7 +57,7 @@ export class ContactUsComponent {
           this.form.reset();
           alert('Message sent successfully');
         } else {
-          alert('Message sending failed');
+          alert('Message sending failed', error);
         }
       }
     );
